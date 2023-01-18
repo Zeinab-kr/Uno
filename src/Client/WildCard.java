@@ -1,5 +1,8 @@
 package Client;
 
+/**
+ * This class represents the wild cards
+ */
 public class WildCard extends Card{
     private String wildAction;
 

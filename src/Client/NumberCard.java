@@ -1,5 +1,8 @@
 package Client;
 
+/**
+ * This class represents the number cards
+ */
 public class NumberCard extends Card{
     private int number;
 

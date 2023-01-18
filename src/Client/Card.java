@@ -1,7 +1,7 @@
 package Client;
 
 /**
- * @author Zeinab Karakani
+ * This is an abstract class that represents all cards
  */
 
 public abstract class Card {
