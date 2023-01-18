@@ -1,0 +1,19 @@
+package Client;
+
+public class NumberCard extends Card{
+    private int number;
+
+    public NumberCard(int point, String color, int number) {
+        super(point, color);
+        this.number = number;
+    }
+
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+}
