@@ -1,8 +1,9 @@
 package Client;
 
 import java.util.Random;
+import java.util.Stack;
 
-public class Store {
+public class Storage {
     private Card[] cards;
     private int cardNum = -1;
 
@@ -54,7 +55,7 @@ public class Store {
     /**
      * shuffles the cards in the storage
      */
-    public void shuffleCards() {
+    private void shuffleCards() {
         int index;
         Card temp;
         Random random = new Random();
