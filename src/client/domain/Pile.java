@@ -5,10 +5,12 @@ import client.cards.Card;
 import client.cards.NumberCard;
 import client.cards.WildCard;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Pile {
-    private Card[] cards;
+//    private Card[] cards;
+    private ArrayList<Card> cards = new ArrayList<>();
     private int cardNum = -1;
 
     /**
@@ -25,29 +27,34 @@ public class Pile {
         // create number cards
         for (String color: cardColor){
             for (int j = 0; j < 10; j++) {
-                cards[++cardNum] = new NumberCard(j, color, j);
+                cards.add(new NumberCard(j, color, j));
+//                cards[++cardNum] = new NumberCard(j, color, j);
             }
             for (int j = 1; j < 10; j++) {
-                cards[++cardNum] = new NumberCard(j, color, j);
+                cards.add(new NumberCard(j, color, j));
+//                cards[++cardNum] = new NumberCard(j, color, j);
             }
         }
 
         // create action cards
         for (String color: cardColor) {
             for (String action: actions) {
-                cards[++cardNum] = new ActionCard(20, color, action);
+                cards.add(new ActionCard(20, color, action));
+//                cards[++cardNum] = new ActionCard(20, color, action);
             }
         }
         for (String color: cardColor) {
             for (String action: actions) {
-                cards[++cardNum] = new ActionCard(20, color, action);
+                cards.add(new ActionCard(20, color, action));
+//                cards[++cardNum] = new ActionCard(20, color, action);
             }
         }
 
         // create wild cards
         for (String wildAction: wildActions) {
             for (int i = 0; i < 4; i++) {
-                cards[++cardNum] = new WildCard(50, wildAction);
+                cards.add(new WildCard(50, wildAction));
+//                cards[++cardNum] = new WildCard(50, wildAction);
             }
         }
 
@@ -60,22 +67,17 @@ public class Pile {
      * shuffles the cards in the storage
      */
     private void shuffleCards() {
-        int index;
-        Card temp;
-        Random random = new Random();
-        for (int i = cards.length - 1; i > 0; i--)
-        {
-            index = random.nextInt(i + 1);
-            temp = cards[index];
-            cards[index] = cards[i];
-            cards[i] = temp;
-        }
-
+        Collections.shuffle(cards);
     }
 
-    public
+    public Card drawOneAndRemove() {
+        Card temp = cards.get(cardNum);
+        cards.remove(cardNum);
+        cardNum--;
+        return temp;
+    }
 
-    public Card[] getCards() {
+    public ArrayList<Card> getCards() {
         return cards;
     }
 
