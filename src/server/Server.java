@@ -19,16 +19,4 @@ public class Server {
         Scanner input = new Scanner(socket.getInputStream());
         Formatter output = new Formatter(socket.getOutputStream());
     }
-
-    public void logIn(String username, String password) {
-
-    }
-
-    public boolean hasAccount(String username, String password) {
-
-    }
-
-    public void signUp(String username, String password) {
-
-    }
 }

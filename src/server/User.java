@@ -1,6 +1,9 @@
 package server;
 
-public class User {
+import java.io.FileInputStream;
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String username;
     private String password;
     private int[] scores;
@@ -9,6 +12,22 @@ public class User {
         this.username = username;
         this.password = password;
         this.scores = scores;
+    }
+
+    public boolean readFromFile() {
+        FileInputStream fileInput = new FileInputStream("Users.");
+    }
+
+    public void logIn(String username, String password) {
+
+    }
+
+    public boolean hasAccount(String username, String password) {
+
+    }
+
+    public void signUp(String username, String password) {
+
     }
 
     public String getUsername() {
