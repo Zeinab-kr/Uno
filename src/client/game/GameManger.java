@@ -1,6 +1,6 @@
 package client.game;
 
-import client.Player;
+import client.player.Player;
 import client.cards.Card;
 import client.cards.WildCard;
 import client.domain.Pile;
@@ -47,7 +47,7 @@ public class GameManger {
      * @param card the card chosen by player
      * @return true if valid, false if invalid
      */
-    public boolean canBeUsed(Card card, Pile pile) {
+    public boolean canBeUsed(Card card, ArrayList<Card> cards) {
         Card cardOnTop = cards.get(cards.size() - 1);
         if (card.equals(cardOnTop)) {
             return true;

@@ -1,10 +1,7 @@
 package client.game;
 
-import client.Player;
-import client.cards.Card;
+import client.player.Player;
 import client.domain.Pile;
-
-import java.util.ArrayList;
 
 /**
  * This class builds the context of the game
