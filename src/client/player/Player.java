@@ -1,4 +1,4 @@
-package client;
+package client.player;
 
 import client.cards.Card;
 
