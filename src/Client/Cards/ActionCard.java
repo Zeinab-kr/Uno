@@ -1,6 +1,8 @@
-package Client;
+package Client.Cards;
 
-public class ActionCard extends Card{
+import Client.Cards.Card;
+
+public class ActionCard extends Card {
     private String action;
     public ActionCard(int point, String color, String action) {
         super(point, color);

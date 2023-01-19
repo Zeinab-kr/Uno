@@ -1,4 +1,4 @@
-package Client;
+package Client.Cards;
 
 /**
  * This is an abstract class that represents all cards
