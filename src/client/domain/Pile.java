@@ -53,7 +53,7 @@ public class Pile {
 
         shuffleCards();
 
-        return "Cards are ready!";
+        return "Pile ready!";
     }
 
     /**
@@ -73,7 +73,17 @@ public class Pile {
 
     }
 
+    public
+
     public Card[] getCards() {
         return cards;
+    }
+
+    public int getCardNum() {
+        return cardNum;
+    }
+
+    public void setCardNum(int cardNum) {
+        this.cardNum = cardNum;
     }
 }
