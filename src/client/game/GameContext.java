@@ -1,5 +1,6 @@
-package client;
+package client.game;
 
+import client.Player;
 import client.cards.Card;
 import client.domain.Pile;
 
@@ -47,29 +48,6 @@ public class GameContext {
                 players[i].createHand(cardPile.drawOneAndRemove());
             }
         }
-    }
-
-    /**
-     *
-     * @param handCards player's cards in hand
-     * @return random card in hand
-     */
-    public Card chooseCard(ArrayList<Card> handCards) {
-        int handNum = handCards.size();
-        int randomCardNum = (int) (Math.random() * handNum);
-        Card chosenCard = handCards.get(randomCardNum);
-        handCards.remove(randomCardNum);
-        return chosenCard;
-    }
-
-    public void fromHandToPile(Player player, Card card) {
-        cardPile.addToPile(card);
-        player.removeFromHand(card);
-    }
-
-    public void fromPileToHand(Player player, Card card) {
-        player.addToHand(card);
-        cardPile.removeFromPile(card);
     }
 
     /**

@@ -5,18 +5,14 @@ import client.cards.Card;
 import client.cards.NumberCard;
 import client.cards.WildCard;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Pile {
-//    private Card[] cards;
     private ArrayList<Card> cards = new ArrayList<>();
-//    private int cardNum = -1;
 
     /**
      * creates cards and makes the card storage
-     *
      * @return a String that tells if the cards are ready
      */
     public String makeCards() {
@@ -29,11 +25,9 @@ public class Pile {
         for (String color: cardColor){
             for (int j = 0; j < 10; j++) {
                 cards.add(new NumberCard(j, color, j));
-//                cards[++cardNum] = new NumberCard(j, color, j);
             }
             for (int j = 1; j < 10; j++) {
                 cards.add(new NumberCard(j, color, j));
-//                cards[++cardNum] = new NumberCard(j, color, j);
             }
         }
 
@@ -41,13 +35,11 @@ public class Pile {
         for (String color: cardColor) {
             for (String action: actions) {
                 cards.add(new ActionCard(20, color, action));
-//                cards[++cardNum] = new ActionCard(20, color, action);
             }
         }
         for (String color: cardColor) {
             for (String action: actions) {
                 cards.add(new ActionCard(20, color, action));
-//                cards[++cardNum] = new ActionCard(20, color, action);
             }
         }
 
@@ -55,7 +47,6 @@ public class Pile {
         for (String wildAction: wildActions) {
             for (int i = 0; i < 4; i++) {
                 cards.add(new WildCard(50, wildAction));
-//                cards[++cardNum] = new WildCard(50, wildAction);
             }
         }
 
@@ -78,14 +69,25 @@ public class Pile {
         return temp;
     }
 
+    /**
+     * remove a card from pile
+     * @param card card to be removed
+     */
     public void removeFromPile(Card card) {
         cards.remove(card);
     }
 
+    /**
+     * adds a card to the pile
+     * @param card card to be added
+     */
     public void addToPile(Card card) {
         cards.add(card);
     }
 
+    /**
+     * @return number of the cards in the pile
+     */
     public int getSize() {
         return cards.size();
     }
