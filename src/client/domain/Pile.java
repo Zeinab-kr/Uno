@@ -5,13 +5,14 @@ import client.cards.Card;
 import client.cards.NumberCard;
 import client.cards.WildCard;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Pile {
 //    private Card[] cards;
     private ArrayList<Card> cards = new ArrayList<>();
-    private int cardNum = -1;
+//    private int cardNum = -1;
 
     /**
      * creates cards and makes the card storage
@@ -71,21 +72,25 @@ public class Pile {
     }
 
     public Card drawOneAndRemove() {
+        int cardNum = cards.size() - 1;
         Card temp = cards.get(cardNum);
         cards.remove(cardNum);
-        cardNum--;
         return temp;
+    }
+
+    public void removeFromPile(Card card) {
+        cards.remove(card);
+    }
+
+    public void addToPile(Card card) {
+        cards.add(card);
+    }
+
+    public int getSize() {
+        return cards.size();
     }
 
     public ArrayList<Card> getCards() {
         return cards;
-    }
-
-    public int getCardNum() {
-        return cardNum;
-    }
-
-    public void setCardNum(int cardNum) {
-        this.cardNum = cardNum;
     }
 }

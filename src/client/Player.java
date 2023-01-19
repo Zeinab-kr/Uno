@@ -60,6 +60,14 @@ public class Player {
         }
     }
 
+    public void addToHand(Card card) {
+        hand.add(card);
+    }
+
+    public void removeFromHand(Card card) {
+        hand.remove(card);
+    }
+
     public void createHand(Card card) {
         hand.add(card);
     }
