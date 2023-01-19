@@ -1,6 +1,4 @@
-package Client.Cards;
-
-import Client.Cards.Card;
+package client.cards;
 
 public class ActionCard extends Card {
     private String action;

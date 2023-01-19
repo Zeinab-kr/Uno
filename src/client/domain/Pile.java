@@ -1,13 +1,13 @@
-package Client;
+package client.domain;
 
-import Client.Cards.ActionCard;
-import Client.Cards.Card;
-import Client.Cards.NumberCard;
-import Client.Cards.WildCard;
+import client.cards.ActionCard;
+import client.cards.Card;
+import client.cards.NumberCard;
+import client.cards.WildCard;
 
 import java.util.Random;
 
-public class Storage {
+public class Pile {
     private Card[] cards;
     private int cardNum = -1;
 

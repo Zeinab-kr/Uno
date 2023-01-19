@@ -1,4 +1,4 @@
-package Client.Cards;
+package client.cards;
 
 /**
  * This class represents the wild cards
