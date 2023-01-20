@@ -16,8 +16,8 @@ public class Player {
     private String username;
     private String password;
     private int[] scores;
-//    private Card[] hand;
     private ArrayList<Card> hand = new ArrayList<>();
+    Socket socket = new Socket("localhost", 5757);
 
     /**
      * no matter if the player has an account or not,
@@ -25,13 +25,13 @@ public class Player {
      * username and password
      * @param username username entered by player
      */
-    public Player(String username, String password) {
+    public Player(String username, String password) throws IOException {
         this.username = username;
         this.password = password;
         this.scores = new int[]{0};
     }
 
-    public Player(String username) {
+    public Player(String username) throws IOException {
         this.username = username;
         this.password = null;
         this.scores = new int[]{0};
@@ -46,10 +46,12 @@ public class Player {
      */
     public void isAUser() throws IOException {
         try {
-            Socket socket = new Socket("localhost", 5757);
             Scanner receivedFromServer = new Scanner(socket.getInputStream());
             Formatter sendToServer = new Formatter(socket.getOutputStream());
+
             // send the username and password to server
+            sendToServer.format("findUser");
+            sendToServer.flush();
             sendToServer.format(username);
             sendToServer.flush();
             sendToServer.format(password);
@@ -76,8 +78,20 @@ public class Player {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username) throws IOException {
         this.username = username;
+        try {
+            Scanner receivedFromServer = new Scanner(socket.getInputStream());
+            Formatter sendToServer = new Formatter(socket.getOutputStream());
+            sendToServer.format("changeUsername");
+            sendToServer.flush();
+            sendToServer.format(username);
+            sendToServer.flush();
+            sendToServer.format(password);
+            sendToServer.flush();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
     public String getPassword() {
@@ -99,8 +113,4 @@ public class Player {
     public ArrayList<Card> getHand() {
         return hand;
     }
-
-//    public void setHand(Card[] hand) {
-//        this.hand = hand;
-//    }
 }

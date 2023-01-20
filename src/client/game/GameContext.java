@@ -3,6 +3,8 @@ package client.game;
 import client.player.Player;
 import client.domain.Pile;
 
+import java.io.IOException;
+
 /**
  * This class builds the context of the game
  * such as cards, card storage, decks, ...
@@ -25,7 +27,7 @@ public class GameContext {
      * @param num number of players preferred by the player
      * @param username player's username
      */
-    private void buildPlayers(int num, String username) {
+    private void buildPlayers(int num, String username) throws IOException {
         players[0] = new Player(username);
         for (int i = 1; i < num; i++) {
             players[i] = new Player("Player" + i);
@@ -52,7 +54,7 @@ public class GameContext {
      * @param numOfPlayers number of players
      * @param playerUsername player's username
      */
-    public void buildGame(int numOfPlayers, String playerUsername) {
+    public void buildGame(int numOfPlayers, String playerUsername) throws IOException {
         buildPlayers(numOfPlayers, playerUsername);
         buildPile();
         drawCards(numOfPlayers);
