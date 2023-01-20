@@ -1,6 +1,5 @@
-package client.commandParserService;
+package client;
 
-import client.consoleViewService.ConsoleViewer;
 import client.player.Player;
 
 import java.io.IOException;
@@ -10,7 +9,7 @@ public class CommandParser {
     ConsoleViewer menu = new ConsoleViewer();
     Scanner scanner = new Scanner(System.in);
 
-    public void commandParser() throws IOException {
+    /*public void commandParser() throws IOException {
         int input;
         menu.welcome();
 
@@ -18,7 +17,7 @@ public class CommandParser {
         if (!startAction(scanner.nextInt())) return;
 
         logInAction();
-    }
+    }*/
 
 
 

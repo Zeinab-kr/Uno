@@ -1,10 +1,12 @@
-package client.consoleViewService;
+package client;
 
 import client.cards.ActionCard;
 import client.cards.Card;
 import client.cards.NumberCard;
 import client.cards.WildCard;
 import client.player.Player;
+
+import java.util.ArrayList;
 
 public class ConsoleViewer {
     public void welcome() {
@@ -66,7 +68,53 @@ public class ConsoleViewer {
 
     public void playersScores(Player[] players) {
         for (Player person: players) {
-            System.out.println(person.getUsername() + ": " + person.getScores()[]);
+            System.out.println(person.getUsername() + ": ");
         }
+    }
+
+    public void printCardsInHand(ArrayList<Card> cards) {
+        for (Card card: cards) {
+            System.out.print(" ---------     ");
+        }
+        System.out.println();
+        for (Card card: cards) {
+            System.out.print("|         |    ");
+        }
+        System.out.println();
+        for (Card card: cards) {
+            if (card instanceof NumberCard) {
+                System.out.print("|    " + ((NumberCard) card).getNumber() + "    |    ");
+            } else if (card instanceof ActionCard) {
+                int length = ((ActionCard) card).getAction().length();
+                System.out.print("|");
+                for (int i = 0; i < (9 - length) / 2; i++) {
+                    System.out.print(" ");
+                }
+                System.out.print(((ActionCard) card).getAction());
+                for (int i = 0; i < (9 - ((length % 2 == 0) ? (length / 2) : (length / 2 + 1))) / 2; i++) {
+                    System.out.print(" ");
+                }
+                System.out.println("|    ");
+            } else {
+                int length = ((WildCard) card).getWildAction().length();
+                System.out.print("|");
+                for (int i = 0; i < (9 - length) / 2; i++) {
+                    System.out.print(" ");
+                }
+                System.out.print(((WildCard) card).getWildAction());
+                for (int i = 0; i < (9 - ((length % 2 == 0) ? (length / 2) : (length / 2 + 1))) / 2; i++) {
+                    System.out.print(" ");
+                }
+                System.out.println("|    ");
+            }
+        }
+        for (Card card: cards) {
+            System.out.print("|         |    ");
+        }
+        System.out.println();
+        for (Card card: cards) {
+            System.out.print(" ---------     ");
+        }
+        System.out.println();
     }
 }

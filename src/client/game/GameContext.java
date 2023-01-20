@@ -4,6 +4,7 @@ import client.player.Player;
 import client.domain.Pile;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * This class builds the context of the game
@@ -13,6 +14,7 @@ public class GameContext {
     private int playerCount;
     private Pile cardPile;
     private Player[] players;
+    private HashMap<Player, Integer> scoresThisRound = new HashMap<Player, Integer>();
 
     /**
      * builds the pile of cards
@@ -51,16 +53,20 @@ public class GameContext {
 
     /**
      *
-     * @param numOfPlayers number of players
+     * @param numOfPlayer number of players
      * @param playerUsername player's username
      */
-    public void buildGame(int numOfPlayers, String playerUsername) throws IOException {
-        buildPlayers(numOfPlayers, playerUsername);
+    public void buildGame(int numOfPlayer, String playerUsername) throws IOException {
+        buildPlayers(numOfPlayer, playerUsername);
         buildPile();
-        drawCards(numOfPlayers);
+        drawCards(numOfPlayer);
     }
 
     public int getPlayerCount() {
         return playerCount;
+    }
+
+    public HashMap<Player, Integer> getScoresThisRound() {
+        return scoresThisRound;
     }
 }
