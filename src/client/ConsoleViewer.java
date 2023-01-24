@@ -36,12 +36,6 @@ public class ConsoleViewer {
                 "3. Exit game");
     }
 
-    public void signUpMenu(String name) {
-        System.out.println("Signed up successfully! Welcome to UNO " + name + "/n");
-        System.out.println("1. New game /n" +
-                "2. Exit game");
-    }
-
     /**
      * gets the player and prints the
      * cards in their hand
@@ -116,5 +110,14 @@ public class ConsoleViewer {
             System.out.print(" ---------     ");
         }
         System.out.println();
+    }
+
+    public void printScoreBoard(String username, String password) {
+        Connection connect = new Connection();
+        int[] scores = connect.getScores(username, password);
+        System.out.println(username + "'s scores:");
+        for (int score: scores) {
+            System.out.println(score);
+        }
     }
 }

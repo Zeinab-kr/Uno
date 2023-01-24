@@ -7,12 +7,11 @@ import java.util.Scanner;
 
 public class Connection {
 
-    Socket socket;
-    Scanner fromServer;
-    Formatter toServer;
+    private Scanner fromServer;
+    private Formatter toServer;
     {
         try {
-            socket = new Socket("localhost", 5757);
+            Socket socket = new Socket("localhost", 5757);
             toServer = new Formatter(socket.getOutputStream());
             fromServer = new Scanner(socket.getInputStream());
         } catch (IOException e) {
@@ -20,7 +19,7 @@ public class Connection {
         }
     }
 
-    public boolean userCheck(String username, String password) {
+    public boolean isUser(String username, String password) {
         toServer.format("userCheck");
         toServer.flush();
         toServer.format(username);
@@ -43,8 +42,8 @@ public class Connection {
         return getScores(username, password);
     }
 
-    public String signIn(String username, String password) {
-        toServer.format("signIn");
+    public String signUp(String username, String password) {
+        toServer.format("signUp");
         toServer.flush();
         toServer.format(username);
         toServer.flush();

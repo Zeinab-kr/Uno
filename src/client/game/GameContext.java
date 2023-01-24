@@ -27,10 +27,8 @@ public class GameContext {
     /**
      * single player game
      * @param num number of players preferred by the player
-     * @param username player's username
      */
-    private void buildPlayers(int num, String username) throws IOException {
-        players[0] = new Player(username);
+    private void buildPlayers(int num) throws IOException {
         for (int i = 1; i < num; i++) {
             players[i] = new Player("Player" + i);
         }
@@ -57,7 +55,7 @@ public class GameContext {
      * @param playerUsername player's username
      */
     public void buildGame(int numOfPlayer, String playerUsername) throws IOException {
-        buildPlayers(numOfPlayer, playerUsername);
+        buildPlayers(numOfPlayer);
         buildPile();
         drawCards(numOfPlayer);
     }
@@ -68,5 +66,17 @@ public class GameContext {
 
     public HashMap<Player, Integer> getScoresThisRound() {
         return scoresThisRound;
+    }
+
+    public Player getPlayer() {
+        return players[0];
+    }
+
+    public void setPlayerScores(int[] scores) {
+        players[0].setScores(scores);
+    }
+
+    public void buildPlayer(String username, String password) throws IOException {
+        players[0] = new Player(username, password);
     }
 }
