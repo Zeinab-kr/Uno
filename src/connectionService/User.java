@@ -1,5 +1,6 @@
 package connectionService;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
@@ -15,11 +16,7 @@ public class User implements Serializable {
         this.scores = scores;
     }
 
-    public void readFromFile() throws FileNotFoundException {
-        FileInputStream fileInput = new FileInputStream("Users.");
-    }
-
-    /*public void logIn(String username, String password) {
+    public void logIn(String username, String password) {
 
     }
 
@@ -29,7 +26,7 @@ public class User implements Serializable {
 
     public void signUp(String username, String password) {
 
-    }*/
+    }
 
     public String getUsername() {
         return username;
