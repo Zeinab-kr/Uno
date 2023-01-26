@@ -25,14 +25,14 @@ public class ConsoleViewer {
     }
 
     public void startMenu() {
-        System.out.println("1. Log in /n" +
-                "2. Exit /n");
+        System.out.println("1. Log in \n" +
+                "2. Exit \n");
     }
 
     public void logInMenu(String name) {
-        System.out.println("Logged in successfully! Welcome back " + name + "/n");
-        System.out.println("1. New game /n" +
-                "2. Score board /n" +
+        System.out.println("Logged in successfully! Welcome back " + name + "\n");
+        System.out.println("1. New game \n" +
+                "2. Score board \n" +
                 "3. Exit game");
     }
 
