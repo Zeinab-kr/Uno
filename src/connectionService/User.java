@@ -9,6 +9,7 @@ public class User implements Serializable {
     private String username;
     private String password;
     private int[] scores;
+    FileService fileService = new FileService();
 
     public User(String username, String password, int[] scores) {
         this.username = username;
@@ -16,16 +17,21 @@ public class User implements Serializable {
         this.scores = scores;
     }
 
-    public void logIn(String username, String password) {
-
+    public int[] logIn() {
+        User user = fileService.searchFile(username, password);
+        if (user != null) {
+            return user.getScores();
+        }
+        else {
+            return new int[]{0};
+        }
     }
 
-    public boolean hasAccount(String username, String password) {
-
-    }
-
-    public void signUp(String username, String password) {
-
+    public boolean hasAccount() {
+        if (fileService.searchFile(username, password) != null) {
+            return true;
+        }
+        return false;
     }
 
     public String getUsername() {

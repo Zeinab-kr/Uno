@@ -28,7 +28,8 @@ public class GameContext {
      * single player game
      * @param num number of players preferred by the player
      */
-    private void buildPlayers(int num) throws IOException {
+    private void buildPlayers(int num, Player user) throws IOException {
+        players[0] = user;
         for (int i = 1; i < num; i++) {
             players[i] = new Player("Player" + i);
         }
@@ -52,10 +53,10 @@ public class GameContext {
     /**
      *
      * @param numOfPlayer number of players
-     * @param playerUsername player's username
+     * @param user the user
      */
-    public void buildGame(int numOfPlayer, String playerUsername) throws IOException {
-        buildPlayers(numOfPlayer);
+    public void buildGame(int numOfPlayer, Player user) throws IOException {
+        buildPlayers(numOfPlayer, user);
         buildPile();
         drawCards(numOfPlayer);
     }

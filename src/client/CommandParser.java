@@ -2,6 +2,7 @@ package client;
 
 import client.game.GameContext;
 import client.game.GameManger;
+import client.player.Player;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class CommandParser {
      * @param input user's input value
      * @throws IllegalArgumentException
      */
-    public void startAction(int input) throws IOException {
+    public void startAction(int input) throws IOException, ClassNotFoundException {
         if (input == 1) {
             logInAction();
         } else if (input != 2) {
@@ -33,7 +34,7 @@ public class CommandParser {
      * signs them up
      * @throws IOException io exception
      */
-    public void logInAction() throws IOException {
+    public void logInAction() throws IOException, ClassNotFoundException {
         System.out.print("Enter your username: ");
         String username = scanner.next();
         System.out.print("Enter your password: ");
@@ -54,7 +55,11 @@ public class CommandParser {
         switch (choice) {
             case 1:
                 System.out.print("Number of players: ");
-                context.buildGame(scanner.nextInt(), username);
+                int playerNum = scanner.nextInt();
+                int[] scores = connection.logIn(username, password);
+                Player user = new Player(username, password);
+                user.setScores(scores);
+                context.buildGame(playerNum, user);
             case 2:
                 consoleViewer.printScoreBoard(username, password);
             case 3:

@@ -1,6 +1,10 @@
 package client;
 
+import client.player.Player;
+
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Formatter;
 import java.util.Scanner;
@@ -9,11 +13,15 @@ public class Connection {
 
     private Scanner fromServer;
     private Formatter toServer;
+    private ObjectInputStream fromServerObject;
+    private ObjectOutputStream toServerObject;
     {
         try {
             Socket socket = new Socket("localhost", 5757);
             toServer = new Formatter(socket.getOutputStream());
             fromServer = new Scanner(socket.getInputStream());
+            fromServerObject = new ObjectInputStream(socket.getInputStream());
+            toServerObject = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,13 +39,15 @@ public class Connection {
         return answer == 1;
     }
 
-    public int[] logIn(String username, String password) {
+    public int[] logIn(String username, String password) throws IOException, ClassNotFoundException {
         toServer.format("logIn");
         toServer.flush();
         toServer.format(username);
         toServer.flush();
         toServer.format(password);
         toServer.flush();
+
+        Player player = (Player) fromServerObject.readObject();
 
         return getScores(username, password);
     }

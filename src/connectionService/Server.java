@@ -1,44 +1,56 @@
 package connectionService;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Formatter;
 import java.util.Scanner;
 
-public class Server /*implements Runnable*/ {
-    public static void main(String[] args) throws IOException {
-        User user;
-        ServerSocket server = new ServerSocket(5757);
-        Socket socket = server.accept();
+public class Server implements Runnable {
+    User user;
 
-        Scanner input = new Scanner(socket.getInputStream());
-        Formatter output = new Formatter(socket.getOutputStream());
-
-        String command = input.next();
-        switch (command) {
-            case "userCheck":
-                user = new User(input.next(), input.next(), new int[]{0});
-                user.hasAccount(user.getUsername(), user.getPassword());
-            case "logIn":
-            case "signUp":
-            case "getScores":
-            case "sendScore":
-            case "changeUsername":
-            case "changePassword":
-        }
+    public static void main(String[] args) {
+        Thread connection = new Thread(new Server());
+        connection.start();
     }
 
-    /*@Override
+    @Override
     public void run() {
         try {
             ServerSocket server = new ServerSocket(5757);
             Socket socket = server.accept();
 
-            Scanner input = new Scanner(socket.getInputStream());
-            Formatter output = new Formatter(socket.getOutputStream());
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
+            Scanner inputString = new Scanner(socket.getInputStream());
+            ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
+            ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
+            Formatter outputString = new Formatter(socket.getOutputStream());
+
+            String command = inputString.next();
+            switch (command) {
+                case "userCheck":
+                    user = new User(inputString.next(), inputString.next(), new int[]{0});
+                    if (user.hasAccount()) {
+                        output.writeInt(1);
+                    } else {
+                        output.writeInt(0);
+                    }
+                    output.flush();
+                case "logIn":
+                    user = new User(inputString.next(), inputString.next(), new int[]{0});
+                    int[] scores = user.logIn();
+                    user.setScores(scores);
+                    output.writeObject(user);
+                    output.flush();
+
+                case "getScores":
+                case "sendScore":
+                case "changeUsername":
+                case "changePassword":
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }*/
+    }
 }
