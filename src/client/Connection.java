@@ -15,7 +15,8 @@ public class Connection {
     private Formatter toServer;
     private ObjectInputStream fromServerObject;
     private ObjectOutputStream toServerObject;
-    {
+
+    public void makeSocket(){
         try {
             Socket socket = new Socket("localhost", 5757);
             toServer = new Formatter(socket.getOutputStream());
@@ -28,6 +29,7 @@ public class Connection {
     }
 
     public boolean isUser(String username, String password) {
+        makeSocket();
         toServer.format("userCheck");
         toServer.flush();
         toServer.format(username);
